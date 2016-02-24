@@ -17,6 +17,20 @@
     titleItem: {
       fontSize: 25,
       padding: 5
+    },
+    riskBubble: {
+      fontSize: 40,
+      width: '100px',
+      height: '100px',
+      color: 'white',
+      backgroundColor: "blue",
+      borderRadius: '30px',
+      paddingTop: '5px',
+      paddingBottom: '5px',
+      paddingLeft: '15px',
+      paddingRight: '15px',
+      textAlign: 'center',
+      margin: 'auto auto'
     }
   };
 
@@ -49,7 +63,10 @@
           className: 'homeroom-link',
           href: Routes.homeroom(student.homeroom_id),
           style: styles.titleItem
-        }, 'Homeroom ' + student.homeroom_name)
+        }, 'Homeroom ' + student.homeroom_name),
+        dom.span({
+          style: styles.riskBubble
+        }, '3')
       );
     }
   });
