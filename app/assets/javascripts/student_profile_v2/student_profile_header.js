@@ -19,18 +19,16 @@
       padding: 5
     },
     riskBubble: {
-      fontSize: 40,
-      width: '100px',
-      height: '100px',
+      fontSize: 20,
+      width: '30px',
+      height: '30px',
       color: 'white',
       backgroundColor: "blue",
       borderRadius: '30px',
-      paddingTop: '5px',
-      paddingBottom: '5px',
-      paddingLeft: '15px',
-      paddingRight: '15px',
+      paddingTop: '1px',
       textAlign: 'center',
-      margin: 'auto auto'
+      margin: 'auto auto',
+      display: 'inline-block'
     }
   };
 
@@ -64,6 +62,9 @@
           href: Routes.homeroom(student.homeroom_id),
           style: styles.titleItem
         }, 'Homeroom ' + student.homeroom_name),
+        dom.span({
+          style: styles.titleItem
+        }, "Risk Level"),
         dom.span({
           style: styles.riskBubble
         }, '3')
