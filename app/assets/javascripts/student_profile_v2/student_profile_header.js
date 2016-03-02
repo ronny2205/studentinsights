@@ -18,17 +18,25 @@
       fontSize: 25,
       padding: 5
     },
+    riskItem: {
+      fontSize: 25,
+      padding: 5,
+      float: 'right',
+      marginTop: '3px'
+    },
     riskBubble: {
       fontSize: 20,
-      width: '30px',
-      height: '30px',
+      width: '35px',
+      height: '35px',
       color: 'white',
       backgroundColor: "blue",
       borderRadius: '30px',
       paddingTop: '1px',
       textAlign: 'center',
-      margin: 'auto auto',
-      display: 'inline-block'
+      marginTop: '10px',
+      marginRight: '25px',
+      display: 'inline-block',
+      float: 'right'
     }
   };
 
@@ -72,11 +80,12 @@
           style: styles.titleItem
         }, 'Homeroom ' + student.homeroom_name),
         dom.span({
-          style: styles.titleItem
-        }, "Risk Level"),
-        dom.span({
           style: styles.riskBubble
-        }, '3')
+        }, student.student_risk_level.level),
+        dom.span({
+          style: styles.riskItem
+        }, "Risk Level")
+
       );
     }
   });
