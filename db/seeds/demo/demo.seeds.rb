@@ -15,7 +15,7 @@ puts "Creating demo educators..."
 Educator.destroy_all
 
 Educator.create!([{
-  email: "demo@example.com",
+  email: "laura@example.com",
   full_name: 'Principal, Laura',
   password: "demo-password",
   local_id: '350',
@@ -23,7 +23,7 @@ Educator.create!([{
   school: School.first,
   admin: true
 }, {
-  email: "fake-fifth-grade@example.com",
+  email: "sarah@example.com",
   full_name: 'Teacher, Sarah',
   password: "demo-password",
   local_id: '450',
@@ -34,8 +34,8 @@ Educator.create!([{
 Homeroom.create(name: "101", grade: "4")
 Homeroom.create(name: "102", grade: "5")
 
-fifth_grade_educator = Educator.find_by_email('fake-fifth-grade@example.com')
-Homeroom.last.update_attribute(:educator_id, fifth_grade_educator.id)
+teacher_educator = Educator.find_by_email('sarah@example.com')
+Homeroom.last.update_attribute(:educator_id, teacher_educator.id)
 
 puts "Creating students for homeroom #1..."
 15.times do
