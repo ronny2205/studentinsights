@@ -1,11 +1,13 @@
-require 'thor'
 require_relative '../../app/importers/sources/somerville_star_importers'
+require 'thor'
 require_relative '../../app/importers/sources/somerville_x2_importers'
 require_relative '../../app/importers/file_importers/students_importer'
 require_relative '../../app/importers/file_importers/x2_assessment_importer'
 require_relative '../../app/importers/file_importers/behavior_importer'
 require_relative '../../app/importers/file_importers/educators_importer'
 require_relative '../../app/importers/file_importers/attendance_importer'
+
+require 'memory_profiler'
 
 class Import
   class Start < Thor::Group
@@ -66,8 +68,12 @@ class Import
     end
 
     def connect_transform_import
-      # X2 importers should come first because they are the sole source of truth about students.
-      importers.flat_map { |i| i.from_options(options) }.each(&:connect_transform_import)
+      memory_profiler = MemoryProfiler.report do
+        # X2 importers should come first because they are the sole source of truth about students.
+        importers.flat_map { |i| i.from_options(options) }.each(&:connect_transform_import)
+      end
+
+      memory_profiler.pretty_print
     end
 
     def run_update_tasks
@@ -76,8 +82,8 @@ class Import
       Student.update_recent_student_assessments
       Homeroom.destroy_empty_homerooms
     end
-
     def print_final_report
+
       report.print_final_report
     end
   end
