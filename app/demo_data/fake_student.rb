@@ -1,7 +1,11 @@
 class FakeStudent
 
   def initialize(homeroom)
-    @student = Student.create(data)
+    @homeroom = homeroom
+  end
+
+  def create!
+    @student = Student.create!(data)
     add_attendance_events
     add_discipline_incidents
     add_deprecated_interventions
@@ -10,10 +14,7 @@ class FakeStudent
     add_services
     add_student_assessments_from_x2
     add_student_assessments_from_star
-    homeroom.students << @student
-  end
-
-  def student
+    @homeroom.students << @student
     @student
   end
 
